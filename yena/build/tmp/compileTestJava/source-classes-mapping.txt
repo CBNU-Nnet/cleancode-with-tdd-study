@@ -1,4 +1,4 @@
-domain/nameTest.java
- domain.nameTest
+domain/CarTest.java
+ domain.CarTest
 domain/PlayTest.java
  domain.PlayTest

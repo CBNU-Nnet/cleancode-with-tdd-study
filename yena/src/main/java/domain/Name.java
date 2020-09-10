@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.StringTokenizer;
 
 public class Name {
+    /*
      String  username;
 
     public static HashSet<String> Split_String(String namelist){
@@ -56,4 +57,5 @@ public class Name {
         }
     }
 
+*/
 }
