@@ -1,22 +1,19 @@
 package domain;
 
 import Model.Car;
+import Model.RandomMake;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.StringTokenizer;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 
 import static Model.Car.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
@@ -26,8 +23,8 @@ class CarTest {
     @DisplayName("잘 나눠지는지 테스트")
     void splitTest(){
         String str="abc,drg,gfdh,sdfa";
-        HashSet  set1 =Car.Split_String(str);
-        HashSet<String> set=new HashSet<String>();
+        ArrayList set1 =Car.splitString(str);
+        ArrayList<String> set=new ArrayList<String>();
         set.add("abc");
         set.add("drg");
         set.add("gfdh");
@@ -38,11 +35,11 @@ class CarTest {
     @DisplayName("중복테스트")
     void DuplicateTest(){
         String value="abc";
-        HashSet<String>  set =new HashSet<String>();
-        set.add("abc");
-        set.add("bcd");
+        ArrayList<String>  list =new ArrayList<String>();
+        list.add("abc");
+        list.add("bcd");
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class,() ->
-                Valid_Duplicate(set,value));
+                validDuplicate(list,value));
         String message =e.getMessage();
         assertEquals(message,"동일한 이름");
     }
@@ -80,34 +77,34 @@ class CarTest {
     void MovingTest(){
         Car firstCar = new Car(0,"qwer");
         Car secondCar = new Car(1,"asd");
-        Moving(firstCar,RandMove());
-        Moving(secondCar,RandMove());
+        moving(firstCar, RandomMake.makeRand());
+        moving(secondCar, RandomMake.makeRand());
         System.out.println(firstCar.getPosition());
         System.out.println(secondCar.getPosition());
 
     }
     @Test
     void PrintRoundTest(){
-        HashSet<Car> Carlist = new HashSet<Car>();
+        ArrayList<Car> Carlist = new ArrayList<Car>();
 
         Carlist.add(new Car(0,"qwe"));
         Carlist.add(new Car(1,"dsf"));
         Carlist.add(new Car(2,"sdf"));
         Carlist.add(new Car(3,"fdgfg"));
         Carlist.add(new Car(4,"qdfs"));
-        PrintRound(Carlist);
+        printRound(Carlist);
 
     }
     @Test
     void TestWinner(){
-        HashSet<Car> Carlist = new HashSet<Car>();
+        ArrayList<Car> Carlist = new ArrayList<Car>();
 
         Carlist.add(new Car(0,"qwe"));
         Carlist.add(new Car(1,"dsf"));
         Carlist.add(new Car(2,"sdf"));
         Carlist.add(new Car(3,"fdgfg"));
         Carlist.add(new Car(4,"qdfs"));
-        PrintWinner(Carlist);
+        printWinner(Carlist);
     }
 
 }

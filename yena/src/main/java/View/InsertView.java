@@ -9,11 +9,11 @@ public class InsertView {
     public InsertView(){
         in = new Scanner(System.in);
     }
-    public int InsertNum(){
+    public int insertNum(){
         System.out.println("게임 횟수를 입력하시오");
         return in.nextInt();
     }
-    public String InsertName(){
+    public String insertName(){
         System.out.println("이름을 입력하시오");
         return  in.nextLine();
     }

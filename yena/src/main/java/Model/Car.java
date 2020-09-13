@@ -1,18 +1,10 @@
 package Model;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Random;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Car {
 
     String  name;
-
-    /*public Car(Integer position) {
-        Position = position;
-    }*/
-
     Integer Position;
 
     public Integer getPosition() {
@@ -29,19 +21,19 @@ public class Car {
         Position = position;
     }
 
-    public static HashSet<String> Split_String(String namelist){
-        HashSet<String> set = new HashSet<String>();
+    public static ArrayList<String> splitString(String namelist){
+        ArrayList<String> list = new ArrayList<String>();
         StringTokenizer st = new StringTokenizer(namelist,",");
         while(st.hasMoreTokens()){
             String next =st.nextToken();
-            Valid_Duplicate(set,next);
-            set.add(next);
+            validDuplicate(list,next);
+            list.add(next);
         }
-        return set;
+        return list;
     }
 
-    static public void Valid_Duplicate(HashSet<String> set, String name){
-        if(set.contains(name))
+    static public void validDuplicate(ArrayList<String> list, String name){ //같은 이름이 있는지 확인
+        if(list.contains(name))
             throw new IllegalArgumentException("동일한 이름");
 
     }
@@ -51,54 +43,46 @@ public class Car {
 
 
     private void valid(String username){
-        valid_Length(username);
-        space_Valid(username);
-        null_Valid(username);
+        validLength(username);
+        spaceValid(username);
+        nullValid(username);
 
 
     }
-    private void valid_Length(String username){
+    private void validLength(String username){ //이름 길이가 5가 넘는지 확인
         if(username.length()>5){
             String message="길이가 깁니다";
             throw new IllegalArgumentException(message);
         }
     }
-    private void space_Valid(String username){
+    private void spaceValid(String username){ //공백을 입력한 이름인지 확인
         Integer length= username.trim().length();
-       // System.out.println(length);
         if (length!=username.length() || length==0 ){
             throw new IllegalArgumentException("공백을 입력할 수 없다");
         }
     }
-    private void null_Valid(String username){
+    private void nullValid(String username){ // 이름이 null인지 확인
         if(username.isEmpty()){
             throw new NullPointerException("null값은 입력할 수 없다");
         }
     }
-    public static Integer RandMove(){
 
-        Random rand = new Random();
-
-        return rand.nextInt(9)+1;
-
-    }
-
-    public static void Moving(Car newCar,Integer value){
-       // System.out.println(value);
+    public static void moving(Car newCar, Integer value){ //하나의 자동차의 위치를 정해줌
         if(value>=4)
             newCar.setPosition(newCar.getPosition()+value);
     }
 
-    public static void PrintRound(HashSet<Car> set){
-        Iterator<Car> iter= set.iterator();
+    public static void printRound(ArrayList<Car> list){ //한 라운드 결과 출력
+        Iterator<Car> iter= list.iterator();
         while(iter.hasNext()){
             Car nextCar= iter.next();
             System.out.println("이름: "+nextCar.getUsername()+" 위치:"+ nextCar.getPosition());
         }
 
+
     }
-    public static void PrintWinner(HashSet<Car> set){
-        Iterator<Car> iter = set.iterator();
+    public static void printWinner(ArrayList<Car> list){ // 우승자 출력
+        Iterator<Car> iter = list.iterator();
         Car winner = new Car(0,"0");
 
         while(iter.hasNext()){
