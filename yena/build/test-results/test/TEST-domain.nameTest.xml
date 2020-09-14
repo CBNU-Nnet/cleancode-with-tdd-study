@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="domain.nameTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-09-03T10:39:15" hostname="DESKTOP-AB6R71F" time="0.015">
+  <properties/>
+  <testcase name="splitTest()" classname="domain.nameTest" time="0.015"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
